@@ -92,41 +92,6 @@ wheels = [
 ]
 
 [[package]]
-name = "app-template"
-version = "0.1.0"
-source = { editable = "." }
-dependencies = [
-    { name = "pydoover" },
-    { name = "transitions" },
-]
-
-[package.dev-dependencies]
-dev = [
-    { name = "aiohttp" },
-    { name = "grpcio" },
-    { name = "protobuf" },
-    { name = "pytest" },
-    { name = "pytest-asyncio" },
-    { name = "requests" },
-]
-
-[package.metadata]
-requires-dist = [
-    { name = "pydoover", specifier = ">=0.4.10" },
-    { name = "transitions", specifier = ">=0.9.2" },
-]
-
-[package.metadata.requires-dev]
-dev = [
-    { name = "aiohttp", specifier = ">=3.11.18" },
-    { name = "grpcio", specifier = ">=1.71.0" },
-    { name = "protobuf", specifier = ">=6.30.2" },
-    { name = "pytest", specifier = ">=8.3.5" },
-    { name = "pytest-asyncio", specifier = ">=0.26.0" },
-    { name = "requests", specifier = ">=2.32.3" },
-]
-
-[[package]]
 name = "attrs"
 version = "25.3.0"
 source = { registry = "https://pypi.org/simple" }
@@ -314,6 +279,19 @@ wheels = [
     { url = "https://files.pythonhosted.org/packages/aa/27/9fdfd66f65ab7e6a4477f7d0b7adf25171d3425760f138f075bc548f6bf4/grpcio-1.72.1-cp313-cp313-musllinux_1_1_x86_64.whl", hash = "sha256:c4bdb404d9c2187260b34e2b22783c204fba8a9023a166cf77376190d9cf5a08", size = 6120589, upload-time = "2025-06-02T10:10:11.06Z" },
     { url = "https://files.pythonhosted.org/packages/c3/f3/630c7a00a29001e0b82763fbd50ddcaa7c656d521f29aa58a6c8dd2b7800/grpcio-1.72.1-cp313-cp313-win32.whl", hash = "sha256:bb64722c3124c906a5b66e50a90fd36442642f653ba88a24f67d08e94bca59f3", size = 3545905, upload-time = "2025-06-02T10:10:13.521Z" },
     { url = "https://files.pythonhosted.org/packages/c4/10/b6186e92eba035315affc30dfeabf65594dd6f778b92627fae5f40e7beec/grpcio-1.72.1-cp313-cp313-win_amd64.whl", hash = "sha256:329cc6ff5b431df9614340d3825b066a1ff0a5809a01ba2e976ef48c65a0490b", size = 4221454, upload-time = "2025-06-02T10:10:16.73Z" },
+]
+
+[[package]]
+name = "grpcio-reflection"
+version = "1.72.1"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "grpcio" },
+    { name = "protobuf" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/18/f9/0caad91ed65e1d808d4a7607c872d1b1330bc24830e44347f4c76ec491ac/grpcio_reflection-1.72.1.tar.gz", hash = "sha256:f04f0c8c21937162c3a7d2b9532a42e568fd4096327bec8eb1cff8e7d8146150", size = 18836, upload-time = "2025-06-02T10:14:22.471Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/ad/aa/f365f10d1e732f38e7cc10d25b8c9f79c6d3cb18c697048afdc30a121df7/grpcio_reflection-1.72.1-py3-none-any.whl", hash = "sha256:f02391bc48962f3d4790c2dd2e847437f0f232f09457ad6be097168074f8e1a5", size = 22690, upload-time = "2025-06-02T10:12:01.301Z" },
 ]
 
 [[package]]
@@ -518,15 +496,15 @@ wheels = [
 
 [[package]]
 name = "pydoover"
-version = "0.4.10"
+version = "0.4.11"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "aiohttp" },
     { name = "requests" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/7c/33/92de76104f6efcf54f4df0c80f1d0beed7c9c8cb1da3149ad5e65338c87e/pydoover-0.4.10.tar.gz", hash = "sha256:d55b4a0691811c2100fa3539fd2ac5db39216759bc2690816272ee7c83ac76c9", size = 197233, upload-time = "2025-07-07T05:08:47.425Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/23/c3/5f700a472174432817324dd365ea43d4fffdbba91c2ca1f1c3f1d42b2865/pydoover-0.4.11.tar.gz", hash = "sha256:e381ae26fb7c89293e134969767d6edcbfd9f0dd30946e92b425b1e062597a0d", size = 198323, upload-time = "2025-07-16T06:09:13.035Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/66/29/494530d93134d71bfb011f3485fad494734dd147c629120afa8671e80784/pydoover-0.4.10-py3-none-any.whl", hash = "sha256:6380348e8a0e0a696f5ea487eeb4e0e5f893651aa6f6706d58266e917bc6a5fc", size = 142044, upload-time = "2025-07-07T05:08:46.339Z" },
+    { url = "https://files.pythonhosted.org/packages/c7/a4/3050ffbcf529071a2401177d0469bf442408596ac391ddf96c56262de0e4/pydoover-0.4.11-py3-none-any.whl", hash = "sha256:ef3b85ad4b3753cc1a72bb29374d7cd87f051da453a5470a1e0fc46399d8b1fb", size = 143031, upload-time = "2025-07-16T06:09:11.755Z" },
 ]
 
 [[package]]
@@ -581,6 +559,57 @@ wheels = [
 ]
 
 [[package]]
+name = "starlink-grpc-core"
+version = "1.2.3"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "grpcio" },
+    { name = "protobuf" },
+    { name = "typing-extensions" },
+    { name = "yagrc" },
+]
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/71/75/c948fc9bf461e2a3dc6c0a5fe77ae5aff37763845a211200434bc8f1d49f/starlink_grpc_core-1.2.3-py3-none-any.whl", hash = "sha256:c1253d1db9565f89ea4fe1b7fbd6cd38b9e15be023518e789cdb1bdd51296990", size = 18572, upload-time = "2025-05-19T13:54:40.588Z" },
+]
+
+[[package]]
+name = "starlink-manager"
+version = "0.1.0"
+source = { editable = "." }
+dependencies = [
+    { name = "pydoover" },
+    { name = "starlink-grpc-core" },
+    { name = "transitions" },
+]
+
+[package.dev-dependencies]
+dev = [
+    { name = "aiohttp" },
+    { name = "grpcio" },
+    { name = "protobuf" },
+    { name = "pytest" },
+    { name = "pytest-asyncio" },
+    { name = "requests" },
+]
+
+[package.metadata]
+requires-dist = [
+    { name = "pydoover", specifier = ">=0.4.11" },
+    { name = "starlink-grpc-core" },
+    { name = "transitions", specifier = ">=0.9.2" },
+]
+
+[package.metadata.requires-dev]
+dev = [
+    { name = "aiohttp", specifier = ">=3.11.18" },
+    { name = "grpcio", specifier = ">=1.71.0" },
+    { name = "protobuf", specifier = ">=6.30.2" },
+    { name = "pytest", specifier = ">=8.3.5" },
+    { name = "pytest-asyncio", specifier = ">=0.26.0" },
+    { name = "requests", specifier = ">=2.32.3" },
+]
+
+[[package]]
 name = "transitions"
 version = "0.9.2"
 source = { registry = "https://pypi.org/simple" }
@@ -593,12 +622,35 @@ wheels = [
 ]
 
 [[package]]
+name = "typing-extensions"
+version = "4.14.1"
+source = { registry = "https://pypi.org/simple" }
+sdist = { url = "https://files.pythonhosted.org/packages/98/5a/da40306b885cc8c09109dc2e1abd358d5684b1425678151cdaed4731c822/typing_extensions-4.14.1.tar.gz", hash = "sha256:38b39f4aeeab64884ce9f74c94263ef78f3c22467c8724005483154c26648d36", size = 107673, upload-time = "2025-07-04T13:28:34.16Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/b5/00/d631e67a838026495268c2f6884f3711a15a9a2a96cd244fdaea53b823fb/typing_extensions-4.14.1-py3-none-any.whl", hash = "sha256:d1e1e3b58374dc93031d6eda2420a48ea44a36c2b4766a4fdeb3710755731d76", size = 43906, upload-time = "2025-07-04T13:28:32.743Z" },
+]
+
+[[package]]
 name = "urllib3"
 version = "2.4.0"
 source = { registry = "https://pypi.org/simple" }
 sdist = { url = "https://files.pythonhosted.org/packages/8a/78/16493d9c386d8e60e442a35feac5e00f0913c0f4b7c217c11e8ec2ff53e0/urllib3-2.4.0.tar.gz", hash = "sha256:414bc6535b787febd7567804cc015fee39daab8ad86268f1310a9250697de466", size = 390672, upload-time = "2025-04-10T15:23:39.232Z" }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/6b/11/cc635220681e93a0183390e26485430ca2c7b5f9d33b15c74c2861cb8091/urllib3-2.4.0-py3-none-any.whl", hash = "sha256:4e16665048960a0900c702d4a66415956a584919c03361cac9f1df5c5dd7e813", size = 128680, upload-time = "2025-04-10T15:23:37.377Z" },
+]
+
+[[package]]
+name = "yagrc"
+version = "1.1.2"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "grpcio" },
+    { name = "grpcio-reflection" },
+    { name = "protobuf" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/7b/d2/d99f2bd77ed1112d920ec69e023971db13d72fde07601b1208b5513c7a2a/yagrc-1.1.2.tar.gz", hash = "sha256:ef264bf98bfbc8f9932dca85048838e6f541db87de4937610ea15e035afe1251", size = 27342, upload-time = "2023-07-23T01:02:25.514Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/95/0c/3501c18544e1806e3e33e1ab3f404fe86aac07ea2b9559af119c50d521cf/yagrc-1.1.2-py3-none-any.whl", hash = "sha256:ef7fc6da021c10f3cac2ea21147931bca97e90341645d28edd6c90b68b0ef3f5", size = 15058, upload-time = "2023-07-23T01:02:23.769Z" },
 ]
 
 [[package]]

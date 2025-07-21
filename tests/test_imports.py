@@ -5,19 +5,19 @@ This ensures all modules are importable and that the config is valid.
 """
 
 def test_import_app():
-    from app_template.application import SampleApplication
-    assert SampleApplication
+    from starlink_manager.application import StarlinkManagerApplication
+    assert StarlinkManagerApplication
 
 def test_config():
-    from app_template.app_config import SampleConfig
+    from starlink_manager.app_config import StarlinkManagerConfig
 
-    config = SampleConfig()
+    config = StarlinkManagerConfig()
     assert isinstance(config.to_dict(), dict)
 
 def test_ui():
-    from app_template.app_ui import SampleUI
-    assert SampleUI
+    from starlink_manager.app_ui import StarlinkManagerUI
+    assert StarlinkManagerUI
 
 def test_state():
-    from app_template.app_state import SampleState
-    assert SampleState
+    from starlink_manager.app_state import StarlinkManagerState
+    assert StarlinkManagerState

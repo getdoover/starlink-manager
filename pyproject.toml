@@ -1,21 +1,25 @@
 [project]
-name = "app-template"
+name = "starlink-manager"
 version = "0.1.0"
 description = "Add your description here"
 readme = "README.md"
 requires-python = ">=3.11"
 dependencies = [
-    "pydoover>=0.4.10",
+    "pydoover>=0.4.11",
     "transitions>=0.9.2",
+    "starlink-grpc-core",
 ]
 
 [project.scripts]
-doover-app-run = "app_template:main"
-export-config = "app_template.app_config:export"
+doover-app-run = "starlink_manager:main"
+export-config = "starlink_manager.app_config:export"
 
 [build-system]
 requires = ["hatchling"]
 build-backend = "hatchling.build"
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
 
 [dependency-groups]
 dev = [
