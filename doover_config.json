@@ -9,7 +9,7 @@
         "long_description": "README.md",
         "depends_on": [],
         "owner_org_key": "",
-        "image_name": "ghcr.io/getdoover/starlink_manager:latest",
+        "image_name": "ghcr.io/getdoover/starlink-manager:main",
         "container_registry_profile_key": "",
         "build_args": "--platform linux/amd64,linux/arm64",
         "config_schema": {
@@ -18,33 +18,25 @@
             "title": "Application Config",
             "type": "object",
             "properties": {
-                "digital_outputs_enabled": {
-                    "title": "Digital Outputs Enabled",
-                    "x-name": "digital_outputs_enabled",
-                    "x-hidden": false,
-                    "type": "boolean",
-                    "default": true
-                },
-                "a_funny_message": {
-                    "title": "A Funny Message",
-                    "x-name": "a_funny_message",
-                    "x-hidden": false,
-                    "type": "string"
-                },
-                "simulator_app_key": {
-                    "format": "doover-application",
-                    "title": "Simulator App Key",
-                    "x-name": "simulator_app_key",
+                "starlink_ip_address": {
+                    "title": "Starlink IP Address",
+                    "x-name": "starlink_ip_address",
                     "x-hidden": false,
                     "type": "string",
-                    "description": "The app key for the simulator"
+                    "description": "The IP address of the starlink dish",
+                    "default": "192.168.1.1"
+                },
+                "power_pin": {
+                    "title": "Power Pin",
+                    "x-name": "power_pin",
+                    "x-hidden": false,
+                    "type": "integer",
+                    "description": "The digital output pin that controls the power to the Starlink",
+                    "default": null
                 }
             },
             "additionalElements": true,
-            "required": [
-                "a_funny_message",
-                "simulator_app_key"
-            ]
+            "required": []
         },
         "owner_org": "36a22e32-ab81-4a39-b400-869d532a052d",
         "container_registry_profile": "904ea459-58f8-4666-a4e0-4a495a6f5e65",

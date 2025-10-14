@@ -70,4 +70,4 @@ class StarlinkManagerApplication(Application):
 
     async def set_power_on(self):
         if self.config.power_pin.value is not None:
-            await self.platform_iface.set_do_as(self.config.power_pin.value, 1)
+            await self.platform_iface.set_do_async(self.config.power_pin.value, 1)
