@@ -12,29 +12,13 @@
         "image_name": "ghcr.io/getdoover/starlink-manager:main",
         "container_registry_profile_key": "",
         "build_args": "--platform linux/amd64,linux/arm64",
+        "export_ui_command": "NO_EXPORT",
         "config_schema": {
             "$schema": "https://json-schema.org/draft/2020-12/schema",
             "$id": "",
-            "title": "Application Config",
+            "title": "$default",
             "type": "object",
-            "properties": {
-                "starlink_ip_address": {
-                    "title": "Starlink IP Address",
-                    "x-name": "starlink_ip_address",
-                    "x-hidden": false,
-                    "type": "string",
-                    "description": "The IP address of the starlink dish",
-                    "default": "192.168.1.1"
-                },
-                "power_pin": {
-                    "title": "Power Pin",
-                    "x-name": "power_pin",
-                    "x-hidden": false,
-                    "type": "integer",
-                    "description": "The digital output pin that controls the power to the Starlink",
-                    "default": null
-                }
-            },
+            "properties": {},
             "additionalElements": true,
             "required": []
         },

@@ -4,23 +4,25 @@ import time
 from datetime import datetime, timedelta
 
 from pydoover.docker import Application
-from pydoover import ui
 
 from .app_config import StarlinkManagerConfig
-from .app_ui import StarlinkManagerUI
 from .app_state import StarlinkManagerState
 
 from .starlink import Starlink
 
 log = logging.getLogger()
 
+
 class StarlinkManagerApplication(Application):
-    config: StarlinkManagerConfig  # not necessary, but helps your IDE provide autocomplete!
+    config: (
+        StarlinkManagerConfig  # not necessary, but helps your IDE provide autocomplete!
+    )
+    config_cls = StarlinkManagerConfig
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
 
-        self.loop_target_period = 2 ## seconds
+        self.loop_target_period = 2  ## seconds
 
         self.started: float = time.time()
         # self.ui: StarlinkManagerUI = None
@@ -40,7 +42,7 @@ class StarlinkManagerApplication(Application):
         log.info(f"Starlink State : {self.state.state}")
         self.starlink.update()
         await self.state.spin_state()
-        
+
         if self.state.state == "off":
             await self.set_power_off()
         else:
@@ -53,7 +55,9 @@ class StarlinkManagerApplication(Application):
         self._shutdown_task = asyncio.create_task(self.shutdown_task())
 
     async def shutdown_task(self):
-        tolerance = 10 ## Trigger shutdown if we're within 10 seconds of the shutdown time
+        tolerance = (
+            10  ## Trigger shutdown if we're within 10 seconds of the shutdown time
+        )
         while datetime.now() < self._shutdown_at - timedelta(seconds=tolerance):
             await asyncio.sleep(1)
         await self.state.trigger_shutdown()
