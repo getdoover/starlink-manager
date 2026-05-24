@@ -18,7 +18,34 @@
             "$id": "",
             "title": "$default",
             "type": "object",
-            "properties": {},
+            "properties": {
+                "starlink_ip_address": {
+                    "title": "Starlink IP Address",
+                    "x-name": "starlink_ip_address",
+                    "x-hidden": false,
+                    "type": [
+                        "string",
+                        "null"
+                    ],
+                    "x-required": false,
+                    "description": "The IP address of the starlink dish",
+                    "default": "192.168.1.1",
+                    "x-position": 0
+                },
+                "power_pin": {
+                    "title": "Power Pin",
+                    "x-name": "power_pin",
+                    "x-hidden": false,
+                    "type": [
+                        "integer",
+                        "null"
+                    ],
+                    "x-required": false,
+                    "description": "The digital output pin that controls the power to the Starlink",
+                    "default": null,
+                    "x-position": 1
+                }
+            },
             "additionalElements": true,
             "required": []
         },
