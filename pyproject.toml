@@ -13,6 +13,7 @@ dependencies = [
 [project.scripts]
 doover-app-run = "starlink_manager:main"
 export-config = "starlink_manager.app_config:export"
+export-ui = "starlink_manager.app_ui:export"
 
 [build-system]
 requires = ["hatchling"]

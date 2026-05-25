@@ -15,8 +15,6 @@ class StarlinkManagerConfig(config.Schema):
         default=None,
     )
 
-    # sim_app_key = config.Application("Simulator App Key", description="The app key for the simulator")
-
 
 def export():
     StarlinkManagerConfig.export(

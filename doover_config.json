@@ -12,7 +12,6 @@
         "image_name": "ghcr.io/getdoover/starlink-manager:main",
         "container_registry_profile_key": "",
         "build_args": "--platform linux/amd64,linux/arm64",
-        "export_ui_command": "NO_EXPORT",
         "config_schema": {
             "$schema": "https://json-schema.org/draft/2020-12/schema",
             "$id": "",
@@ -62,6 +61,358 @@
         "code_repo_id": null,
         "export_config_command": null,
         "run_command": null,
-        "lambda_arn": null
+        "lambda_arn": null,
+        "ui_schema": {
+            "displayString": "$config.app().APP_DISPLAY_NAME",
+            "hidden": "$config.app().hidden:boolean:false:boolean:false",
+            "position": "$config.app().dv_app_position:number:100",
+            "icon": null,
+            "colour": null,
+            "defaultOpen": "$config.app().dv_app_default_open:boolean",
+            "type": "uiApplication",
+            "name": "$config.app().APP_KEY",
+            "children": {
+                "internet": {
+                    "name": "internet",
+                    "type": "uiVariable",
+                    "displayString": "Internet",
+                    "showActivity": true,
+                    "position": 1,
+                    "hidden": false,
+                    "varType": "bool",
+                    "currentValue": "$tag.app().has_internet:boolean:false",
+                    "live": true
+                },
+                "dish_state": {
+                    "name": "dish_state",
+                    "type": "uiVariable",
+                    "displayString": "Dish State",
+                    "showActivity": true,
+                    "position": 2,
+                    "hidden": false,
+                    "varType": "string",
+                    "currentValue": "$tag.app().state:string:null"
+                },
+                "download": {
+                    "name": "download",
+                    "type": "uiVariable",
+                    "displayString": "Download",
+                    "showActivity": true,
+                    "form": "radialGauge",
+                    "position": 3,
+                    "hidden": false,
+                    "units": "Mbps",
+                    "varType": "float",
+                    "currentValue": "$tag.app().downlink_mbps:number:null",
+                    "decPrecision": 1,
+                    "ranges": [
+                        {
+                            "min": 0,
+                            "max": 25,
+                            "colour": "yellow",
+                            "show_on_graph": true,
+                            "label": "Slow"
+                        },
+                        {
+                            "min": 25,
+                            "max": 100,
+                            "colour": "blue",
+                            "show_on_graph": true,
+                            "label": "OK"
+                        },
+                        {
+                            "min": 100,
+                            "max": 500,
+                            "colour": "green",
+                            "show_on_graph": true,
+                            "label": "Fast"
+                        }
+                    ],
+                    "live": true
+                },
+                "upload": {
+                    "name": "upload",
+                    "type": "uiVariable",
+                    "displayString": "Upload",
+                    "showActivity": true,
+                    "position": 4,
+                    "hidden": false,
+                    "units": "Mbps",
+                    "varType": "float",
+                    "currentValue": "$tag.app().uplink_mbps:number:null",
+                    "decPrecision": 1,
+                    "live": true
+                },
+                "latency": {
+                    "name": "latency",
+                    "type": "uiVariable",
+                    "displayString": "Latency",
+                    "showActivity": true,
+                    "position": 5,
+                    "hidden": false,
+                    "units": "ms",
+                    "varType": "float",
+                    "currentValue": "$tag.app().latency_ms:number:null",
+                    "decPrecision": 0,
+                    "ranges": [
+                        {
+                            "min": 0,
+                            "max": 60,
+                            "colour": "green",
+                            "show_on_graph": true,
+                            "label": "Good"
+                        },
+                        {
+                            "min": 60,
+                            "max": 150,
+                            "colour": "yellow",
+                            "show_on_graph": true,
+                            "label": "High"
+                        },
+                        {
+                            "min": 150,
+                            "max": 1000,
+                            "colour": "red",
+                            "show_on_graph": true,
+                            "label": "Bad"
+                        }
+                    ],
+                    "live": true
+                },
+                "packet_loss": {
+                    "name": "packet_loss",
+                    "type": "uiVariable",
+                    "displayString": "Packet Loss",
+                    "showActivity": true,
+                    "position": 6,
+                    "hidden": false,
+                    "units": "%",
+                    "varType": "float",
+                    "currentValue": "$tag.app().ping_drop_rate:number:null",
+                    "decPrecision": 1,
+                    "live": true
+                },
+                "dish_obstructed": {
+                    "name": "dish_obstructed",
+                    "type": "uiWarningIndicator",
+                    "displayString": "Dish Obstructed",
+                    "position": 20,
+                    "hidden": "$tag.app().obstruction_ok:boolean:true",
+                    "currentValue": "$cmds.app().dish_obstructed",
+                    "can_cancel": true
+                },
+                "thermal_throttling": {
+                    "name": "thermal_throttling",
+                    "type": "uiWarningIndicator",
+                    "displayString": "Thermal Throttling",
+                    "position": 21,
+                    "hidden": "$tag.app().thermal_ok:boolean:true",
+                    "currentValue": "$cmds.app().thermal_throttling",
+                    "can_cancel": true
+                },
+                "water_detected": {
+                    "name": "water_detected",
+                    "type": "uiWarningIndicator",
+                    "displayString": "Water Detected",
+                    "position": 22,
+                    "hidden": "$tag.app().water_ok:boolean:true",
+                    "currentValue": "$cmds.app().water_detected",
+                    "can_cancel": true
+                },
+                "hardware_fault": {
+                    "name": "hardware_fault",
+                    "type": "uiWarningIndicator",
+                    "displayString": "Hardware Fault",
+                    "position": 23,
+                    "hidden": "$tag.app().hardware_ok:boolean:true",
+                    "currentValue": "$cmds.app().hardware_fault",
+                    "can_cancel": true
+                },
+                "obstruction": {
+                    "name": "obstruction",
+                    "type": "uiSubmodule",
+                    "displayString": "Obstruction",
+                    "showActivity": true,
+                    "position": 40,
+                    "hidden": false,
+                    "children": {
+                        "obstructed_fraction": {
+                            "name": "obstructed_fraction",
+                            "type": "uiVariable",
+                            "displayString": "Obstructed Fraction",
+                            "showActivity": true,
+                            "position": 61,
+                            "hidden": false,
+                            "units": "%",
+                            "varType": "float",
+                            "currentValue": "$tag.app().fraction_obstructed:number:null",
+                            "decPrecision": 2
+                        },
+                        "currently_obstructed": {
+                            "name": "currently_obstructed",
+                            "type": "uiVariable",
+                            "displayString": "Currently Obstructed",
+                            "showActivity": true,
+                            "position": 62,
+                            "hidden": false,
+                            "varType": "bool",
+                            "currentValue": "$tag.app().currently_obstructed:boolean:false"
+                        },
+                        "mean_obstruction_duration": {
+                            "name": "mean_obstruction_duration",
+                            "type": "uiVariable",
+                            "displayString": "Mean Obstruction Duration",
+                            "showActivity": true,
+                            "position": 63,
+                            "hidden": false,
+                            "units": "s",
+                            "varType": "float",
+                            "currentValue": "$tag.app().obstruction_duration_s:number:null",
+                            "decPrecision": 1
+                        },
+                        "mean_obstruction_interval": {
+                            "name": "mean_obstruction_interval",
+                            "type": "uiVariable",
+                            "displayString": "Mean Obstruction Interval",
+                            "showActivity": true,
+                            "position": 64,
+                            "hidden": false,
+                            "units": "s",
+                            "varType": "float",
+                            "currentValue": "$tag.app().obstruction_interval_s:number:null",
+                            "decPrecision": 0
+                        },
+                        "azimuth": {
+                            "name": "azimuth",
+                            "type": "uiVariable",
+                            "displayString": "Azimuth",
+                            "showActivity": true,
+                            "position": 65,
+                            "hidden": false,
+                            "units": "deg",
+                            "varType": "float",
+                            "currentValue": "$tag.app().direction_azimuth_deg:number:null",
+                            "decPrecision": 1
+                        },
+                        "elevation": {
+                            "name": "elevation",
+                            "type": "uiVariable",
+                            "displayString": "Elevation",
+                            "showActivity": true,
+                            "position": 66,
+                            "hidden": false,
+                            "units": "deg",
+                            "varType": "float",
+                            "currentValue": "$tag.app().direction_elevation_deg:number:null",
+                            "decPrecision": 1
+                        }
+                    },
+                    "defaultOpen": false
+                },
+                "device": {
+                    "name": "device",
+                    "type": "uiSubmodule",
+                    "displayString": "Device",
+                    "showActivity": true,
+                    "position": 42,
+                    "hidden": false,
+                    "children": {
+                        "serial": {
+                            "name": "serial",
+                            "type": "uiVariable",
+                            "displayString": "Serial",
+                            "showActivity": true,
+                            "position": 68,
+                            "hidden": false,
+                            "varType": "string",
+                            "currentValue": "$tag.app().device_id:string:null"
+                        },
+                        "hardware": {
+                            "name": "hardware",
+                            "type": "uiVariable",
+                            "displayString": "Hardware",
+                            "showActivity": true,
+                            "position": 69,
+                            "hidden": false,
+                            "varType": "string",
+                            "currentValue": "$tag.app().hardware_version:string:null"
+                        },
+                        "software": {
+                            "name": "software",
+                            "type": "uiVariable",
+                            "displayString": "Software",
+                            "showActivity": true,
+                            "position": 70,
+                            "hidden": false,
+                            "varType": "string",
+                            "currentValue": "$tag.app().software_version:string:null"
+                        },
+                        "started": {
+                            "name": "started",
+                            "type": "uiTimestamp",
+                            "displayString": "Started",
+                            "showActivity": true,
+                            "position": 71,
+                            "hidden": false,
+                            "varType": "timestamp",
+                            "currentValue": "$tag.app().started_at_ms:number:null"
+                        },
+                        "snr_above_noise_floor": {
+                            "name": "snr_above_noise_floor",
+                            "type": "uiVariable",
+                            "displayString": "SNR Above Noise Floor",
+                            "showActivity": true,
+                            "position": 72,
+                            "hidden": false,
+                            "varType": "bool",
+                            "currentValue": "$tag.app().snr_above_noise_floor:boolean:false"
+                        }
+                    },
+                    "defaultOpen": false
+                },
+                "history": {
+                    "name": "history",
+                    "type": "uiMultiPlot",
+                    "displayString": "Throughput & Latency",
+                    "showActivity": true,
+                    "position": 50,
+                    "hidden": false,
+                    "series": {
+                        "download": {
+                            "name": "download",
+                            "displayString": "Download",
+                            "dataType": "unknown",
+                            "lookup": "$tag.app().downlink_mbps:number:null",
+                            "active": true,
+                            "colour": "blue",
+                            "units": "Mbps",
+                            "live": true
+                        },
+                        "upload": {
+                            "name": "upload",
+                            "displayString": "Upload",
+                            "dataType": "unknown",
+                            "lookup": "$tag.app().uplink_mbps:number:null",
+                            "active": true,
+                            "colour": "green",
+                            "units": "Mbps",
+                            "live": true
+                        },
+                        "latency": {
+                            "name": "latency",
+                            "displayString": "Latency",
+                            "dataType": "unknown",
+                            "lookup": "$tag.app().latency_ms:number:null",
+                            "active": true,
+                            "colour": "yellow",
+                            "sharedAxis": false,
+                            "units": "ms",
+                            "live": true
+                        }
+                    },
+                    "title": "Throughput & Latency"
+                }
+            }
+        }
     }
 }
