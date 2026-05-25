@@ -135,7 +135,7 @@ class StarlinkManagerUI(ui.UI):
         position=42,
     )
 
-    # ---- history chart ---------------------------------------------
+    # ---- history chart (above the live readouts) -------------------
     history = ui.Multiplot(
         "Throughput & Latency",
         name="history",
@@ -152,7 +152,7 @@ class StarlinkManagerUI(ui.UI):
                 value=T.uplink_mbps,
                 units="Mbps",
                 colour=ui.Colour.green,
-                active=True,
+                active=False,
             ),
             ui.Series(
                 "Latency",
@@ -163,7 +163,7 @@ class StarlinkManagerUI(ui.UI):
                 active=True,
             ),
         ],
-        position=50,
+        position=0,
     )
 
 

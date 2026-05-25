@@ -27,8 +27,8 @@
                         "null"
                     ],
                     "x-required": false,
-                    "description": "The IP address of the starlink dish",
-                    "default": "192.168.1.1",
+                    "description": "The IP address of the Starlink dish's gRPC API (default 192.168.100.1).",
+                    "default": "192.168.100.1",
                     "x-position": 0
                 },
                 "power_pin": {
@@ -43,6 +43,20 @@
                     "description": "The digital output pin that controls the power to the Starlink",
                     "default": null,
                     "x-position": 1
+                },
+                "dv_app_position": {
+                    "title": "Position",
+                    "x-name": "dv_app_position",
+                    "x-hidden": true,
+                    "type": [
+                        "integer",
+                        "null"
+                    ],
+                    "x-required": false,
+                    "description": "Position of Application in UI Structure. Smaller numbers are closer to the top.",
+                    "default": 110,
+                    "x-position": 2,
+                    "minimum": 0
                 }
             },
             "additionalElements": true,
@@ -375,7 +389,7 @@
                     "type": "uiMultiPlot",
                     "displayString": "Throughput & Latency",
                     "showActivity": true,
-                    "position": 50,
+                    "position": 0,
                     "hidden": false,
                     "series": {
                         "download": {
@@ -393,7 +407,7 @@
                             "displayString": "Upload",
                             "dataType": "unknown",
                             "lookup": "$tag.app().uplink_mbps:number:null",
-                            "active": true,
+                            "active": false,
                             "colour": "green",
                             "units": "Mbps",
                             "live": true

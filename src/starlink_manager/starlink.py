@@ -46,7 +46,7 @@ class Starlink:
 
     @property
     def uri(self) -> str:
-        return f"{self.ip_address}:9000"
+        return f"{self.ip_address}:9200"
 
     async def close(self) -> None:
         await asyncio.to_thread(self._context.close)
@@ -61,10 +61,10 @@ class Starlink:
             )
         except (grpc.RpcError, starlink_grpc.GrpcError) as e:
             self.snapshot.consecutive_status_failures += 1
-            # Only log the first failure in a streak — a powered-off
-            # dish would otherwise spam the logs every loop.
-            if self.snapshot.consecutive_status_failures == 1:
-                log.warning("Starlink status fetch failed: %s", e)
+            log.warning(
+                "Starlink status fetch failed (streak=%d, target=%s): %s",
+                self.snapshot.consecutive_status_failures, self.uri, e,
+            )
             self.snapshot.status = None
             self.snapshot.obstruction = None
             self.snapshot.alerts = None

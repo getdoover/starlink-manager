@@ -31,7 +31,7 @@ class StarlinkManagerApplication(Application):
     ui_cls = StarlinkManagerUI
 
     async def setup(self):
-        self.starlink = Starlink(self.config.starlink_ip_address.value or "192.168.1.1")
+        self.starlink = Starlink(self.config.starlink_ip_address.value or "192.168.100.1")
         self.state = StarlinkManagerState(self)
 
         self.loop_target_period = 2  # seconds
@@ -102,15 +102,17 @@ class StarlinkManagerApplication(Application):
         sats = s.get("gps_sats")
         await self.tags.gps_sats.set(int(sats) if sats is not None else 0)
 
-        obs = snap.obstruction or {}
-        currently_obstructed = bool(obs.get("currently_obstructed"))
-        await self.tags.fraction_obstructed.set(_pct(obs.get("fraction_obstructed")))
+        # All obstruction & direction values live in the StatusDict, not
+        # the ObstructionDict (which only carries the now-obsolete
+        # per-wedge arrays).
+        currently_obstructed = bool(s.get("currently_obstructed"))
+        await self.tags.fraction_obstructed.set(_pct(s.get("fraction_obstructed")))
         await self.tags.currently_obstructed.set(currently_obstructed)
         await self.tags.obstruction_ok.set(not currently_obstructed)
-        await self.tags.obstruction_duration_s.set(obs.get("obstruction_duration"))
-        await self.tags.obstruction_interval_s.set(obs.get("obstruction_interval"))
-        await self.tags.direction_azimuth_deg.set(obs.get("direction_azimuth"))
-        await self.tags.direction_elevation_deg.set(obs.get("direction_elevation"))
+        await self.tags.obstruction_duration_s.set(s.get("obstruction_duration"))
+        await self.tags.obstruction_interval_s.set(s.get("obstruction_interval"))
+        await self.tags.direction_azimuth_deg.set(s.get("direction_azimuth"))
+        await self.tags.direction_elevation_deg.set(s.get("direction_elevation"))
 
         await self._publish_alerts(snap.alerts or {})
 
